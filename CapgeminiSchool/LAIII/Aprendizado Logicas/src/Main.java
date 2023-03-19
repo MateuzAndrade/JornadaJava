@@ -1,10 +1,16 @@
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args)
     {
-        Scanner leitor = new Scanner(System.in);
 
-        int idade = leitor.nextInt();
-        System.out.println(idade);
+        int idade = 19;
+
+        if ( idade >= 18){
+            System.out.println("Pode Entrar na Festa");
+            if (idade >= 18){
+                System.out.println("Pode Utilizar o Bar");
+            }
+        } else {
+            System.out.println("Não pode entrar na Festa");
+        }
     }
 }
