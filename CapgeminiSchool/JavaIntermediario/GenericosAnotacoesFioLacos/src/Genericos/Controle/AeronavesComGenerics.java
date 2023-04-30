@@ -1,19 +1,21 @@
-package Genericos.Classes;
-import java.util.List;
+package Genericos.Controle;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class Aeronaves {
-    private  List<Integer> listaAeronaves = new ArrayList<Integer>();
-    public void addVoo( Integer nrVoo){
+public class AeronavesComGenerics<T> {
+    private List<T> listaAeronaves = new ArrayList();
+
+    public void addVoo(T nrVoo){
+        //ListaAeronaves.add
         listaAeronaves.add(nrVoo);
     }
-    public Integer primeiroVoo() {
+    public T primeiroVoo(){
         if (listaAeronaves.isEmpty()) {
             throw new IllegalStateException("List is Empty");
         }
-        return listaAeronaves.get(0);
+        return  listaAeronaves.get(0);
     }
-
     public void listaVoos(){
         System.out.print("[");
         if (!listaAeronaves.isEmpty()){
@@ -24,6 +26,5 @@ public class Aeronaves {
         }
         System.out.print("]");
     }
-
 
 }
