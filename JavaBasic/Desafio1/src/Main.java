@@ -9,7 +9,7 @@ public class Main {
 		String dadosConta;
 		String opcoesSistema;
 		int opcao = 0;
-		double saldo = 10;
+		double saldo = 0;
 		
 		System.out.println("""
 				-------------------------------------
@@ -51,6 +51,7 @@ public class Main {
 		while (opcao != 4) {
 			System.out.println(opcoesSistema);
 			opcao = leitura.nextInt();
+			double valor;
 			
 			
 			switch (opcao) {
@@ -60,7 +61,7 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Informe o valor do saque");
-				double valor = leitura.nextDouble();
+				valor = leitura.nextDouble();
 				if(saldo >= valor) {
 					saldo -= valor;
 					System.out.println("Novo saldo de sua conta é :R$ " + saldo);
@@ -71,11 +72,10 @@ public class Main {
 				break;
 			case 3:
 				System.out.println("Informe o valor a ser depositado");
-				saldo = leitura.nextDouble();
+				valor = leitura.nextDouble();
 				
-				if (valordeposito >= 0) {
-					double valordeposito = leitura.nextDouble();
-					saldo += valordeposito;
+				if (valor >= 0) {
+					saldo += valor;
 					System.out.println("Novo saldo de sua conta é :R$ " + saldo);
 				} else {
 					System.out.println("Valor Invalido!");
@@ -86,7 +86,7 @@ public class Main {
 				break;
 
 			default:
-				System.out.println("Digite uma Opção Válida, Saindo");
+				System.out.println("Digite uma Opção Válida");
 				break;
 			}
 			
