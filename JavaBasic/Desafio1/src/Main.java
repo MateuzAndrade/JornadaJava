@@ -9,9 +9,7 @@ public class Main {
 		String dadosConta;
 		String opcoesSistema;
 		int opcao = 0;
-		double saldo = 0;
-		double deposito = 0;
-		double saque = 0;
+		double saldo = 10;
 		
 		System.out.println("""
 				-------------------------------------
@@ -62,9 +60,9 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Informe o valor do saque");
-				saldo = leitura.nextDouble();
-				if (saldo > saque && saque > 0) {
-					saldo -= saque;
+				double valor = leitura.nextDouble();
+				if(saldo >= valor) {
+					saldo -= valor;
 					System.out.println("Novo saldo de sua conta é :R$ " + saldo);
 				}else {
 					System.out.println("Valor Invalido!");
@@ -75,8 +73,9 @@ public class Main {
 				System.out.println("Informe o valor a ser depositado");
 				saldo = leitura.nextDouble();
 				
-				if (deposito >= 0) {
-					saldo = saldo + deposito;
+				if (valordeposito >= 0) {
+					double valordeposito = leitura.nextDouble();
+					saldo += valordeposito;
 					System.out.println("Novo saldo de sua conta é :R$ " + saldo);
 				} else {
 					System.out.println("Valor Invalido!");
