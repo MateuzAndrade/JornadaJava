@@ -1,8 +1,7 @@
+package br.com.alura.screenmatch.modelos;
 
-public class Filme {
-	// Inserir caracteristicas comuns a todos os filmes
-	// Objetos é a referencia para a construção de um item
-
+public class Titulo {
+	
 	private String nome;
 	private int anoDeLancamento;
 	private boolean incluidoNoPlano;
@@ -10,7 +9,7 @@ public class Filme {
 	private int totalDeAvaliacoes;
 	private int duracaoEmMinutos;
 	
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -59,28 +58,18 @@ public class Filme {
 		this.duracaoEmMinutos = duracaoEmMinutos;
 	}
 
-	Filme(String nome, int anoDeLançamento, boolean incluidoNoPlano, double avaliacao, int totalDeAvaliacoes,
-			int duracaoEmMinutos) {
-		this.nome = nome;
-		this.anoDeLancamento = anoDeLançamento;
-		this.incluidoNoPlano = incluidoNoPlano;
-		this.totalDeAvaliacoes = totalDeAvaliacoes;
-		this.duracaoEmMinutos = duracaoEmMinutos;
-	}
-
-	void exibeFichaTecnica() {
+	public void exibeFichaTecnica() {
 
 		System.out.println("Nome do Filme: " + nome);
 		System.out.println("Ano de Lançamento: " + anoDeLancamento);
 	}
 
-	void avalia(double nota) {
+	public void avalia(double nota) {
 		somaDasAvaliacao += nota;
 		totalDeAvaliacoes ++;
 	}
 	
-	double mediaAvaliacoes() {
+	public double mediaAvaliacoes() {
 		return somaDasAvaliacao/totalDeAvaliacoes;
 	}
-	
 }
