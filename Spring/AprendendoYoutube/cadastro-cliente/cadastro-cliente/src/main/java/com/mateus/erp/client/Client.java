@@ -17,6 +17,7 @@ public class Client {
     private Long id;
     private String nome;
     private String email;
+    private String telefone;
     private String cpf;
     @Enumerated(EnumType.STRING)
     private Atendimento atendimento;
@@ -27,6 +28,7 @@ public class Client {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
+        this.telefone = dados.telefone();
         this.atendimento = (dados.atendimento());
         this.endereco = new Endereco(dados.endereco());
     }
