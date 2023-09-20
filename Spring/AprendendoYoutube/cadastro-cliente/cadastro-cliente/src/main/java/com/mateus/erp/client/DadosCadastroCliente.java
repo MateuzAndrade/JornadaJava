@@ -1,12 +1,20 @@
 package com.mateus.erp.client;
 
-import com.mateus.erp.endereco.DadosEndereco;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroCliente(
+        @NotBlank
         String nome,
+        @NotBlank@Email
         String email,
-        String telefone,
+        @NotBlank
+        @Pattern(regexp = "\\d{0,11}")
         String cpf,
-        Atendimento atendimento
-        , DadosEndereco endereco) {
+        @NotBlank
+        String telefone,
+
+        String atendimento
+        ) {
 }

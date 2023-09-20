@@ -1,7 +1,6 @@
 package com.mateus.erp.client;
 
-import com.mateus.erp.endereco.DadosEndereco;
-import com.mateus.erp.endereco.Endereco;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,15 +20,13 @@ public class Client {
     private String cpf;
     @Enumerated(EnumType.STRING)
     private Atendimento atendimento;
-    @Embedded
-    private Endereco endereco;
 
     public Client(DadosCadastroCliente dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
+        this.atendimento = Atendimento.valueOf(dados.atendimento());
         this.telefone = dados.telefone();
-        this.atendimento = (dados.atendimento());
-        this.endereco = new Endereco(dados.endereco());
+
     }
 }

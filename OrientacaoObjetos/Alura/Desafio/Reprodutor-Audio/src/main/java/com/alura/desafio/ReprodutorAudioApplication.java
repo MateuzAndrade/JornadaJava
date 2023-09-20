@@ -1,6 +1,7 @@
 package com.alura.desafio;
 
 import com.alura.desafio.playes.Classificacao;
+import com.alura.desafio.playes.Musica;
 import com.alura.desafio.playes.Podcast;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,6 +12,10 @@ public class ReprodutorAudioApplication {
 
 		Podcast alo = new Podcast();
 		alo.setClassificacao(Classificacao.culturaGeek);
+
+		Musica cris = new Musica();
+		cris.setDuracaoMinutos(10);
+
 
 	}
 

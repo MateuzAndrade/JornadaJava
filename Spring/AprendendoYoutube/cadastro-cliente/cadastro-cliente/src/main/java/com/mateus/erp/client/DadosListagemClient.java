@@ -1,8 +1,22 @@
 package com.mateus.erp.client;
 
-public record DadosListagemClient(String nome, String email, String telefone, String atendimento) {
-    public DadosListagemClient(Client client){
-        this(client.getNome(),client.getEmail(),client.getTelefone(),client.getAtendimento());
-    }
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+
+public record DadosListagemClient(
+
+        String nome,
+
+        String email,
+
+        String cpf,
+
+        String telefone,
+
+        String atendimento
+) {
+
 
 }
