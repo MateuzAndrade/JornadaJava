@@ -14,7 +14,7 @@ public record DadosCadastroCliente(
         String cpf,
         @NotBlank
         String telefone,
-
-        String atendimento
+        @NotBlank
+        Atendimento atendimento
         ) {
 }

@@ -18,15 +18,25 @@ public class Client {
     private String email;
     private String telefone;
     private String cpf;
-    @Enumerated(EnumType.STRING)
+    @Enumerated()
     private Atendimento atendimento;
 
     public Client(DadosCadastroCliente dados) {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
-        this.atendimento = Atendimento.valueOf(dados.atendimento());
+        this.atendimento = dados.atendimento();
         this.telefone = dados.telefone();
+
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoClient dados) {
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.atendimento() != null) {
+            this.atendimento = dados.atendimento();
+        }
 
     }
 }

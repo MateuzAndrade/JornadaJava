@@ -2,7 +2,7 @@ package com.mateus.erp.client;
 
 
 public enum Atendimento {
-    INFATIL,
+    INFANTIL,
     ADULTO,
-    IDOSO
+    IDOSO,
 }
