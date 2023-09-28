@@ -37,4 +37,10 @@ public class ClienteControler {
 
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public  void  excluir(@PathVariable long id){
+        repository.deleteById(id);
+    }
+
 }
