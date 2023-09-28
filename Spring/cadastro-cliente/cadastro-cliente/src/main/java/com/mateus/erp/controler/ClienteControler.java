@@ -19,6 +19,7 @@ public class ClienteControler {
     private ClientRepository repository;
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroCliente dados){
 
         repository.save(new Client(dados));
