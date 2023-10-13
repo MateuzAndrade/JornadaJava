@@ -1,4 +1,21 @@
 package med.voll.api.model.util;
 
-public record Endereco(String logradouro, String numero, String complemento, String bairro, String cidade, String UF, String cep) {
+import jakarta.validation.constraints.NotBlank;
+
+public record Endereco(
+        @NotBlank
+        String logradouro,
+        @NotBlank
+        String numero,
+        @NotBlank
+        String complemento,
+        @NotBlank
+        String bairro,
+        @NotBlank
+        String cidade,
+        @NotBlank
+        String UF,
+        @NotBlank
+        String cep
+) {
 }

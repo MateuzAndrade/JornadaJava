@@ -1,6 +1,7 @@
 package med.voll.api.model.paciente;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,9 +16,11 @@ import lombok.NoArgsConstructor;
 public class Paciente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String nome;
     private String email;
     private String telefone;
+    @NotNull
     private String CPF;
     @Embedded
     private EnderecoPaciente endereco;

@@ -1,6 +1,7 @@
 package med.voll.api.model.medico;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class Medico {
     private String nome;
     private String email;
     private String telefone;
+    @NotNull
     private String CRM;
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
