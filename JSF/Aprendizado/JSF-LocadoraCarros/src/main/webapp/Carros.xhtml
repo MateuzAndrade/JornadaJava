@@ -5,9 +5,22 @@ xmlns:h="http://java.sun.com/jsf/html">
 
 
 <h:body>
+	<h1> Cadastro de Carro </h1>
 	<h:form>
-		<h:inputText />
-			<h:commandButton value="Gravar"/>
+		<fieldset>
+				<legend> Cadastro do Carro </legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Marca:" for="marca" />
+					<h:inputText id= "marca" value="#{carroBean.carro.marca}"/>
+					<h:outputLabel value="Modelo:" for="modelo" />
+					<h:inputText id= "modelo" value="#{carroBean.carro.modelo}"/>
+					<h:outputLabel value="Ano Modelo:" for="anoModelo" />
+					<h:inputText id= "anoModelo" value="#{carroBean.carro.anoModelo}"/>
+					<h:outputLabel value="Ano: Fabricação:" for="anoFabricacao" />
+					<h:inputText id= "anoFabricacao" value="#{carroBean.carro.anoFabricacao}"/>
+					<h:commandButton value="Gravar" action="#{carroBean.gravar}"/>
+				</h:panelGrid>
+		</fieldset>
 	</h:form>
 </h:body>
 

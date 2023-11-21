@@ -8,11 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 @RestController
-@RequestMapping("client")
+@RequestMapping("/client")
 public class ClienteControler {
 
     @Autowired
