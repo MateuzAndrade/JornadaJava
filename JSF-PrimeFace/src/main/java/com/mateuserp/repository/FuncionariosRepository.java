@@ -1,4 +1,4 @@
-package com.mateuserp.model.repository;
+package com.mateuserp.repository;
 
 import java.io.Serializable;
 import java.util.List;
