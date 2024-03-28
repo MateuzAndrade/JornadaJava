@@ -12,29 +12,28 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "obra")
-
-public class Obra implements Serializable {
+public  class Obra implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "obra_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private @Getter @Setter Long id;
+	private Long id;
 	
 	@Column(nullable = false)
-	private @Getter @Setter String nome;
+	private   String nome;
 	@Column(nullable = false)
-	private @Getter @Setter String endereco;
+	private String endereco;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	private @Getter @Setter String dataInicio;
+	private String dataInicio;
 
 	@Override
 	public int hashCode() {

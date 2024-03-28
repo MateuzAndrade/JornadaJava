@@ -23,6 +23,7 @@ public class ObrasRepository implements Serializable {
 	}
 	
 	public List<Obra> pesquisar (String nome){
+		String jpql = "from Obra where nome like :nome";
 		TypedQuery<Obra> query = manager
 				.createQuery("from Obra where nome like :nome", Obra.class);
 		query.setParameter("nome", nome + "%");
