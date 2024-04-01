@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Gestao de Obras</title>
+	<h:outputStylesheet library="mateusERP" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+
+	<header>
+		<!--<h:graphicImage library="mateusERP" name="logo.png" id="logo" /> -->
+	</header>
+
+
+	<section>
+		<div id="conteudo">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Numero: " for="nomeObra"></h:outputLabel>
+					<h:outputText value="#{gestaoObrasBean.numero}"/>
+
+					<h:outputLabel />
+					<h:commandButton value="Salvar" />
+				</h:panelGrid>
+
+			</h:form>
+		</div>
+	</section>
+
+
+
+
+
+	<footer>Sistema de Gerencimento de Obras - Todos os Direitos
+		reservados a Mateus ERP</footer>
+</h:body>
+</html>

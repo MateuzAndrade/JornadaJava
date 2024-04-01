@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Gestao de Obras</title>
+	<h:outputStylesheet library="mateusERP" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+
+	<header>
+		<!--<h:graphicImage library="mateusERP" name="logo.png" id="logo" /> -->
+	</header>
+
+
+	<section>
+		<div id="conteudo">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome da Obra: " for="nomeObra"></h:outputLabel>
+					<h:inputText id="nomeObra" />
+
+					<h:outputLabel value="Endereço: " for="enderecoObra"></h:outputLabel>
+					<h:inputText id="enderecoObra" />
+
+					<h:outputLabel value="Data Inicio: " for="inicioObra"></h:outputLabel>
+					<h:inputText id="inicioObra" />
+
+					<h:outputLabel />
+					<h:commandButton value="Salvar" />
+				</h:panelGrid>
+				<h:dataTable value="#{[0, 0, 0, 0]}">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nome da Obra" />
+						</f:facet>
+						<h:outputText value="Teste" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Endereço" />
+						</f:facet>
+						<h:outputText value="Rua X" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data de Início" />
+						</f:facet>
+						<h:outputText value="31/03/2024" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</section>
+
+
+
+
+
+	<footer>Sistema de Gerencimento de Obras - Todos os Direitos
+		reservados a Mateus ERP</footer>
+</h:body>
+</html>

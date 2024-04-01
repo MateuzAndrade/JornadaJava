@@ -9,12 +9,8 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.transaction.Transactional;
-
-import org.jboss.weld.probe.Invocation;
 
 @Interceptor
-@Transactional
 @Priority(Interceptor.Priority.APPLICATION)
 public class TransacionalInterceptor implements Serializable {
 
