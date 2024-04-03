@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns="http://thymeleaf.org"
-                xmlns="http//www.ultraq.net.nz/thymeleaf/layout">
+                xmlns:th="http://thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
         <title>Spring-Boot Básico</title>
         <meta charset="UTF-8" />
@@ -19,23 +19,43 @@
         <link href="/css/style.css" rel="stylesheet" />
     </head>
 <body>
-    <header>
+    <header th:replace="~{fragments/header :: cabecalho}">
         <div>Header</div>
     </header>
-    <div>
+    <div class="layout-main">
         <aside>
-            <nav>
+            <nav th:replace="~{fragments/sidebar :: nav-sidebar}">
                 <span>menu</span>
             </nav>
         </aside>
-        <section>
+            <section layout:fragment="~{corpo}">
             <div>conteudo de paginas</div>
         </section>
     </div>
-    <footer>
+    <footer th:replace="~{fragments/footer :: rodape}">
         <div>
             footer
         </div>
     </footer>
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+        $(document).ready(function () {
+            $(".navbar-toggle").click(function () {
+                $(".sidebar").toggleClass("sidebar-open");
+            })
+        });
+
+    </script>
 </body>
 </html>
