@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "CUSTOS")
-public class Custo {
+public class Custo extends AbstractEntity<Long> {
 
     @Column(name = "descricao", nullable = false, unique = true, length = 200)
     @Getter
