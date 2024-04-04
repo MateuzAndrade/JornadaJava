@@ -3,16 +3,17 @@ package com.mateuserp.sistemagestaodeobras.service;
 import java.util.List;
 
 import com.mateuserp.sistemagestaodeobras.model.Cargo;
+import com.mateuserp.sistemagestaodeobras.model.Funcionario;
 
 public interface FuncionarioService {
 
-    void salvar(Cargo cargo);
+    void salvar(Funcionario funcionario);
 
-    void editar(Cargo cargo);
+    void editar(Funcionario funcionario);
 
     void excluir(Long id);
 
-    Cargo buscarPorId(Long id);
+    Funcionario buscarPorId(Long id);
 
-    List<Cargo> buscarTodos();
+    List<Funcionario> buscarTodos();
 }

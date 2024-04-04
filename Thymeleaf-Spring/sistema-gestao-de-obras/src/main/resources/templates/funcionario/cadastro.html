@@ -23,12 +23,12 @@
 	        </div>
 	
 	        <div class="container" id="cadastro">
-	            <form action="/funcionarios/salvar" method="POST">
+	            <form th:action="@{/funcionarios/salvar}" th:object="${Funcionario}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Funcionário</label>
 	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-	                               autofocus="autofocus" name="nome" value=""/>
+	                               autofocus="autofocus" th:field="*{nome}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>

@@ -6,26 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mateuserp.sistemagestaodeobras.dao.CustoDao;
-import com.mateuserp.sistemagestaodeobras.model.Custo;
+import com.mateuserp.sistemagestaodeobras.dao.FuncionarioDao;
+import com.mateuserp.sistemagestaodeobras.model.Funcionario;
 
 @Service
 @Transactional(readOnly = false)
-public class CustoServiceImpl implements CustoService {
+public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Autowired
-    private CustoDao dao;
+    private FuncionarioDao dao;
 
     @Override
     @Transactional(readOnly = false)
-    public void salvar(Custo custo) {
-        dao.save(custo);
+    public void salvar(Funcionario funcionario) {
+        dao.save(funcionario);
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void editar(Custo custo) {
-        dao.update(custo);
+    public void editar(Funcionario funcionario) {
+        dao.update(funcionario);
     }
 
     @Override
@@ -36,13 +36,13 @@ public class CustoServiceImpl implements CustoService {
 
     @Override
     @Transactional(readOnly = true)
-    public Custo buscarPorId(Long id) {
+    public Funcionario buscarPorId(Long id) {
         return dao.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Custo> buscarTodos() {
+    public List<Funcionario> buscarTodos() {
         return dao.findAll();
     }
 
