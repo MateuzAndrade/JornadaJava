@@ -21,7 +21,4 @@ public class Obra extends AbstractEntity<Long>{
     @JoinColumn(name = "endereco_id_fk")
     private Endereco endereco;
 
-
-
-
 }
