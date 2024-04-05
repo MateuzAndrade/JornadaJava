@@ -16,7 +16,7 @@ public class FuncionarioController {
     private FuncionarioService service;
 
     @RequestMapping("/cadastrar")
-    public String cadastrar() {
+    public String cadastrar(Funcionario funcionario) {
         return "/funcionario/cadastro";
     }
 

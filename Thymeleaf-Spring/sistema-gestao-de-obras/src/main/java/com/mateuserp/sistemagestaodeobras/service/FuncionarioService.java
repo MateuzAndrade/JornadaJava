@@ -2,7 +2,6 @@ package com.mateuserp.sistemagestaodeobras.service;
 
 import java.util.List;
 
-import com.mateuserp.sistemagestaodeobras.model.Cargo;
 import com.mateuserp.sistemagestaodeobras.model.Funcionario;
 
 public interface FuncionarioService {

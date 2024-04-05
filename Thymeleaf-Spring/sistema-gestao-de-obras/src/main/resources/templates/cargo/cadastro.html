@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-    <meta charset="UTF-8"/>
+	<meta charset="UTF-8" />
 </head>
-<body>		
-	    <section class="layout-content" layout:fragment="~{corpo}">
-	
-	        <nav class="navbar navbar-expand-md bg-light">
-	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	                <ul class="navbar-nav mr-auto">
-	                    <li class="nav-item active">
-	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Departamentos</span>
-	                    </li>
-	                </ul>
-	                <a class="btn btn-primary btn-md" href="/departamentos/listar" role="button">
-	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-	                    <span>Listar Departamentos</span>
-	                </a>
-	            </div>
-	        </nav>
-	
-	        <div class="container" id="cadastro">
-	            <form action="/departamentos/salvar" method="POST">
-	                <div class="form-row">
-	                    <div class="form-group col-md-6">
-	                        <label for="nome">Departamento</label>
-	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Departamento" autofocus="autofocus" name="nome" value=""/>
-	                    </div>
-	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
-	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-	            </form>
-	        </div>
-	    </section>
+
+<body>
+	<section class="layout-content" layout:fragment="~{corpo}">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span>Cadastrar Cargos</span>
+					</li>
+				</ul>
+			</div>
+			<a class="btn btn-primary btn-md" href="/cargos/listar" role="button">
+				<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+				<span>Listar Cargos</span>
+			</a>
+		</nav>
+
+		<div class="container" id="cadastro">
+			<form th:action="@{/cargos/salvar}" th:object="${cargo}" method="POST">
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="nome">Nome do Cargo</label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome Cargo" autofocus="autofocus"
+							name="nome" value="" th:field="*{nome}" />
+					</div>
+				</div>
+				<input type="hidden" id="id" name="id" value="" />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+	</section>
 
 </body>
+
 </html>

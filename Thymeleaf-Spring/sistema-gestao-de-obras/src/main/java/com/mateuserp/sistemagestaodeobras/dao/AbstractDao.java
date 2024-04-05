@@ -17,7 +17,6 @@ public abstract class AbstractDao<T, PK extends Serializable> {
 
 	@SuppressWarnings("unchecked")
 	public AbstractDao() {
-		// Obtém o tipo da entidade genérica usando reflexão
 		this.entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
 	}

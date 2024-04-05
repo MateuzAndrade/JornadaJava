@@ -6,5 +6,5 @@ import com.mateuserp.sistemagestaodeobras.model.Cargo;
 
 @Repository
 public class CargoDaoImpl extends AbstractDao <Cargo,Long> implements CargoDao {
-
+    
 }
