@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mateuserp.sistemagestaodeobras.model.Cargo;
-import com.mateuserp.sistemagestaodeobras.service.CargoService;
+import com.mateuserp.sistemagestaodeobras.repository.CargoRespository;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CargosController {
 
     @Autowired
-    CargoService cargoService;
+    CargoRespository cargoRespository;
 
     @RequestMapping("/cadastrar")
     public String cadastrar(Cargo cargo) {
@@ -29,7 +29,7 @@ public class CargosController {
 
     @PostMapping("/salvar")
     private String salvar(Cargo cargo, RedirectAttributes attr){
-        cargoService.salvar(cargo);
+        cargoRespository.save(cargo);
         attr.addFlashAttribute("Sucesso", "Cargo Inserido com Sucesso no Sistema");
         return "redirect:/cargos/cadastrar";
     }
