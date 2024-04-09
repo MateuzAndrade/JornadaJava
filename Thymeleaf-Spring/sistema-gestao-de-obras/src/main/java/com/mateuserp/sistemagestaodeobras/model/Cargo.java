@@ -25,6 +25,7 @@ public class Cargo{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter @Setter
     @Column(name = "nome", nullable = false, unique = true, length = 60)
     private String nome;
 
