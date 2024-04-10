@@ -48,20 +48,23 @@ public class CargosController {
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         Optional<Cargo> cargoOptional = cargoRespository.findById(id);
-        if (cargoOptional.isPresent()) {
-            Cargo cargo = cargoOptional.get();
-            model.addAttribute("cargo", cargo);
-            return "cargo/cadastro";
-        } else {
-            // Trate o caso em que o cargo não foi encontrado
-            return "erro"; // Por exemplo, redirecione para uma página de erro
-        }
+        Cargo cargo = cargoOptional.get();
+        model.addAttribute("cargo", cargo);
+        return "cargo/cadastro";
     }
+        
 
     @PostMapping("/editar")
     public String editar(Cargo cargo){
         cargoRespository.save(cargo);
         return "redirect:/cargos/cadastrar";
+    }
+    
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
+        cargoRespository.deleteById(id);
+        return listar(model);
     }
     
     
