@@ -1,5 +1,7 @@
 package com.mateuserp.sistemagestaodeobras.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,14 +47,21 @@ public class CargosController {
 
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("cargo", cargoRespository.findById(id));
-        return "cargo/cadastro";
+        Optional<Cargo> cargoOptional = cargoRespository.findById(id);
+        if (cargoOptional.isPresent()) {
+            Cargo cargo = cargoOptional.get();
+            model.addAttribute("cargo", cargo);
+            return "cargo/cadastro";
+        } else {
+            // Trate o caso em que o cargo não foi encontrado
+            return "erro"; // Por exemplo, redirecione para uma página de erro
+        }
     }
 
     @PostMapping("/editar")
-    public String editar(Cargo cargo, RedirectAttributes attr ){
+    public String editar(Cargo cargo){
         cargoRespository.save(cargo);
-        return "redirect:/cargo/cadastro";
+        return "redirect:/cargos/cadastrar";
     }
     
     
