@@ -62,11 +62,11 @@ public class CargosController {
     
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, ModelMap model) {
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         cargoRespository.deleteById(id);
-        return listar(model);
+        redirectAttributes.addFlashAttribute("mensagem", "Cargo excluído com sucesso");
+        return "redirect:/cargos/listar";
     }
-    
     
 
 }
