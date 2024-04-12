@@ -54,7 +54,7 @@ public class CargosController {
     public String editar(Cargo cargo, RedirectAttributes attr){
         cargoRespository.save(cargo);
         attr.addAttribute("success", "Cargo Editado com Sucesso!");
-        return "redirect:/cargos/cadastrar";
+        return "redirect:/cargos/listar";
     }
     
 
