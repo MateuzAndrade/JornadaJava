@@ -14,10 +14,6 @@ import com.mateuserp.sistemagestaodeobras.repository.CargoRespository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 
 @Controller
@@ -41,7 +37,7 @@ public class CargosController {
     @PostMapping("/salvar")
     private String salvar(Cargo cargo, RedirectAttributes attr){
         cargoRespository.save(cargo);
-        attr.addFlashAttribute("Sucesso", "Cargo Inserido com Sucesso no Sistema");
+        attr.addFlashAttribute("success", "Cargo Inserido com Sucesso no Sistema");
         return "redirect:/cargos/cadastrar";
     }
 
@@ -55,17 +51,18 @@ public class CargosController {
         
 
     @PostMapping("/editar")
-    public String editar(Cargo cargo){
+    public String editar(Cargo cargo, RedirectAttributes attr){
         cargoRespository.save(cargo);
+        attr.addAttribute("success", "Cargo Editado com Sucesso!");
         return "redirect:/cargos/cadastrar";
     }
     
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
         cargoRespository.deleteById(id);
-        redirectAttributes.addFlashAttribute("mensagem", "Cargo excluído com sucesso");
-        return "redirect:/cargos/listar";
+        model.addAttribute("success", "Cargo excluído com sucesso");
+        return listar(model);
     }
     
 
