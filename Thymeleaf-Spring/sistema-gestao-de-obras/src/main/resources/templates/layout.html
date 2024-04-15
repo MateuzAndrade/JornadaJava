@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:th="http://thymeleaf.org"
-                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <title>Spring-Boot Básico</title>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <link rel="icon" href="/image/favicon.png" />
-    
-        <!-- Bootstrap core CSS -->
-        <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
-        
-        <!-- Custom styles for this template -->
-        <link href="/css/style.css" rel="stylesheet" />
-    </head>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>SGO - Sistema de Gestão de Obras</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/image/favicon.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+</head>
+
 <body>
     <header th:replace="~{fragments/header :: cabecalho}">
         <div>Header</div>
@@ -28,7 +29,7 @@
                 <span>menu</span>
             </nav>
         </aside>
-            <section layout:fragment="~{corpo}">
+        <section layout:fragment="~{corpo}">
             <div>conteudo de paginas</div>
         </section>
     </div>
@@ -48,7 +49,7 @@
 
         var url = '';
 
-        $('button[id*="btn_"]').click(function() {
+        $('button[id*="btn_"]').click(function () {
             url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
         });
 
@@ -62,9 +63,9 @@
 
         $(document).ready(function () {
 
-            setTimeout(function() {
-                $(".alert").fadeOut("slow", function(){
-                $("this").alert('close');
+            setTimeout(function () {
+                $(".alert").fadeOut("slow", function () {
+                    $("this").alert('close');
                 })
             }, 5000);
 
@@ -75,9 +76,8 @@
             })
         });
 
-        
-
 
     </script>
 </body>
+
 </html>

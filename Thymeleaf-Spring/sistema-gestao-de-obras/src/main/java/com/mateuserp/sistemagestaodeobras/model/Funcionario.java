@@ -3,6 +3,9 @@ package com.mateuserp.sistemagestaodeobras.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +45,9 @@ public class Funcionario {
     @Column(name = "chavePix", nullable = false, unique = true, length = 200)
     @Getter
     @Setter
-    private BigDecimal chavePix;
+    private String chavePix;
 
+    @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "data_entrada", nullable = false, columnDefinition = "DATE")
     @Getter
     @Setter
@@ -54,11 +58,5 @@ public class Funcionario {
     @Getter
     @Setter
     private Cargo cargo;
-
-    @ManyToOne
-    @JoinColumn(name = "obra_id_fk")
-    @Getter
-    @Setter
-    private Obra obra;
 
 }

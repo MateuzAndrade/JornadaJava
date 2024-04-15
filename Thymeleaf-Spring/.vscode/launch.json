@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SistemaGestaoDeObrasApplication<sistema-gestao-de-obras>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mateuserp.sistemagestaodeobras.SistemaGestaoDeObrasApplication",
+            "projectName": "sistema-gestao-de-obras",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

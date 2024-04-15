@@ -17,104 +17,63 @@
 						</li>
 					</ul>
 				</div>
-				<a class="btn btn-primary btn-md" href="/funcionarios/listar" role="button">
-					<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-					<span>Listar Funcionários</span>
-				</a>
+				<div id="menu">
+					<a class="btn btn-primary btn-md" href="/cargos/cadastrar" role="button">
+						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+						<span>Novo Cargo</span>
+					</a>
+					<a class="btn btn-primary btn-md" href="/funcionarios/listar" role="button">
+						<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+						<span>Listar Funcionários</span>
+					</a>
+				</div>
 			</nav>
 		</div>
 
 		<div class="container" id="cadastro">
+			<div th:replace="~{fragments/alert}"></div>
 			<form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="POST">
 				<div class="form-row">
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-12">
 						<label for="nome">Nome do Funcionário</label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome Completo"
 							autofocus="autofocus" th:field="*{nome}" />
 						<div class="invalid-feedback">
-
-						</div>
-					</div>
-					<div class="form-group col-md-6">
-						<label for="salario">Salário</label>
-						<input type="text" class="form-control" id="salario" data-mask="#.##0,00"
-							data-mask-reverse="true" name="salario" value="" />
-						<div class="invalid-feedback">
-
 						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="dataEntrada">Data de Entrada</label>
-						<input type="date" class="form-control" id="dataEntrada" name="dataEntrada" value="" />
-						<div class="invalid-feedback">
-
-						</div>
+						<input type="date" class="form-control" id="dataEntrada" name="dataEntrada"
+							th:field="*{dataEntrada}" />
 					</div>
 					<div class="form-group col-md-6">
-						<label for="dataSaida">Status</label>
-						<select id="cargo" class="form-control" name="cargo">
-							<option value="">Selecione...</option>
-							<option value="1">Ativo</option>
-							<option value="2">Inativo</option>
-						</select>
-						<div class="invalid-feedback">
-						</div>
+						<label for="salario">Salário</label>
+						<input type="text" class="form-control" id="salario" data-mask="#.##0,00"
+							data-mask-reverse="true" name="salario" th:field="*{salario}" onblur="formatarSalario()" />
+						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="cargo">Cargo</label>
-						<select id="cargo" class="form-control" name="cargo">
+						<select id="cargo" class="form-control" th:field="*{cargo}">
 							<option value="">Selecione...</option>
-							<option value="1">Auxiliar Contábil</option>
-							<option value="2">Auxiliar Administrativo</option>
-							<option value="3">Contador</option>
-							<option value="4">Adminitrador</option>
-							<option value="5">Programado PHP</option>
-							<option value="6">Desenvolvedor Java Jr.</option>
-							<option value="7">Desenvolvedor Java Pleno</option>
-							<option value="8">Desenvolvedor Java Senior</option>
-							<option value="9">Auxiliar de RH</option>
-							<option value="10">Coordenador de RH</option>
-							<option value="11">Psicologo</option>
+							<option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}"></option>
 						</select>
-						<div class="invalid-feedback">
-
 						</div>
-					</div>
-					<div class="form-group col-md-6">
-						<label for="cargo">Obra</label>
-						<select id="cargo" class="form-control" name="cargo">
-							<option value="">Selecione...</option>
-							<option value="1">Auxiliar Contábil</option>
-							<option value="2">Auxiliar Administrativo</option>
-							<option value="3">Contador</option>
-							<option value="4">Adminitrador</option>
-							<option value="5">Programado PHP</option>
-							<option value="6">Desenvolvedor Java Jr.</option>
-							<option value="7">Desenvolvedor Java Pleno</option>
-							<option value="8">Desenvolvedor Java Senior</option>
-							<option value="9">Auxiliar de RH</option>
-							<option value="10">Coordenador de RH</option>
-							<option value="11">Psicologo</option>
-						</select>
-						<div class="invalid-feedback">
-					
-						</div>
-					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="cidade">Chave Pix</label>
-						<input type="text" class="form-control" id="cidade" name="endereco.cidade" value="" />
+						<input type="text" class="form-control" id="chavePix" name="chavePix" th:field="*{chavePix}" />
 						<div class="invalid-feedback">
-						</div>				
+						</div>
 					</div>
-					</div>
-					<input type="hidden" id="id" name="id" value="" />
-					<button type="submit" class="btn btn-primary btn-sm">Cadastrar Funcionário</button>
+				</div>
+				<input type="hidden" id="id" name="id" value="" />
+				<button type="submit" class="btn btn-primary btn-sm">Cadastrar Funcionário</button>
 			</form>
 		</div>
 	</section>
