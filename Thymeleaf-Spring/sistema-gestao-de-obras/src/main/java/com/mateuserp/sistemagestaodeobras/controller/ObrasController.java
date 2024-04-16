@@ -2,9 +2,7 @@ package com.mateuserp.sistemagestaodeobras.controller;
 
 import java.util.Optional;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Optionals;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mateuserp.sistemagestaodeobras.model.Obra;
 import com.mateuserp.sistemagestaodeobras.repository.ObraRepository;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -29,7 +24,7 @@ public class ObrasController {
     ObraRepository obraRepository;
 
     @RequestMapping("/cadastrar")
-    public String cadastrar() {
+    public String cadastrar(Obra obra) {
         return "/obra/cadastro";
     }
 

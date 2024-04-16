@@ -25,15 +25,15 @@ public class Endereco {
     private Long id;
 
     @Getter @Setter
-    @Column(name = "rua", nullable = false, unique = true, length = 60)
+    @Column(name = "rua", nullable = false, unique = false, length = 60)
     private String rua;
 
     @Getter @Setter
-    @Column(name = "bairo", nullable = false, unique = true, length = 60)
+    @Column(name = "bairo", nullable = false, unique = false, length = 60)
     private String bairro;
     
     @Getter @Setter
-    @Column(name = "numero", nullable = false, unique = true, length = 60)
+    @Column(name = "numero", nullable = false, unique = false, length = 60)
     private Integer numero;
 
 }

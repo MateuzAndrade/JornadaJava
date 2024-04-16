@@ -18,16 +18,12 @@ import com.mateuserp.sistemagestaodeobras.model.Funcionario;
 import com.mateuserp.sistemagestaodeobras.repository.CargoRespository;
 import com.mateuserp.sistemagestaodeobras.repository.FuncionarioRepository;
 
-import ch.qos.logback.core.model.Model;
-
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 

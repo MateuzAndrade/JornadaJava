@@ -25,25 +25,25 @@
 
 		<div class="container" id="cadastro">
 			<div th:replace="~{fragments/alert}"></div>
-			<form th:action=" ${obra.id == null} ? @{/obras/salvar} : @{/obras/salvar}" th:object="${obra}" method="POST">
+			<form th:action="@{/obras/salvar}" th:object="${obra}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="nome">Nome da Obra</label>
-						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" th:field="*{nome}" />
+						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" th:field="*{nome}"/>
 					</div>
-					<spam>Endereço</spam>
+					<span>Endereço</span>
 					<br>
 					<div class="form-group col-md-12">
 						<label for="nome">Rua</label>
-						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" value="" />
+						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" th:field="*{endereco.rua}" />
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nome">Número</label>
-						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" value="" />
+						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" th:field="*{endereco.numero}"/>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nome">Bairro</label>
-						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" value="" />
+						<input type="text" class="form-control" id="nome" autofocus="autofocus" name="nome" th:field="*{endereco.bairro}" />
 					</div>
 				</div>
 				<input type="hidden" id="id" name="id" value="" />

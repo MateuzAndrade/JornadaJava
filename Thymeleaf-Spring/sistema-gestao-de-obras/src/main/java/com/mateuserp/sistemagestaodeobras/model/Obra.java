@@ -27,7 +27,7 @@ public class Obra {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome" ,nullable = false, unique = true, length = 200)
+    @Column(name = "nome" ,nullable = false, unique = false, length = 200)
     @Getter @Setter
     private String nome;
 
