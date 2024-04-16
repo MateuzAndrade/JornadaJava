@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,10 +18,18 @@ import com.mateuserp.sistemagestaodeobras.model.Funcionario;
 import com.mateuserp.sistemagestaodeobras.repository.CargoRespository;
 import com.mateuserp.sistemagestaodeobras.repository.FuncionarioRepository;
 
+import ch.qos.logback.core.model.Model;
+
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 @Controller
@@ -37,14 +47,15 @@ public class FuncionarioController {
     }
 
     @RequestMapping("/listar")
-    public String listar() {
+    public String listar(ModelMap model) {
+        model.addAttribute("funcionarios", funcionarioRepository.findAll());
         return "/funcionario/lista";
     }
 
     @PostMapping("/salvar")
     public String salvar(Funcionario funcionario, RedirectAttributes attr) {
         funcionarioRepository.save(funcionario);
-        attr.addFlashAttribute("Sucesso", "Funcionário Inserido com Sucesso no Sistema");
+        attr.addFlashAttribute("success", "Funcionário Inserido com Sucesso no Sistema");
         return "redirect:/funcionarios/cadastrar";
     }
 
@@ -63,5 +74,30 @@ public class FuncionarioController {
 
         binder.registerCustomEditor(BigDecimal.class, new CustomNumberEditor(BigDecimal.class, df, true));
     }
+
+    @GetMapping("/editar/{id}")
+    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+        Optional<Funcionario> funcionarioOptional = funcionarioRepository.findById(id);
+        Funcionario funcionario = funcionarioOptional.get();
+        model.addAttribute("funcionario", funcionario);
+        return "funcionario/cadastro";
+    }
+
+    @PostMapping("/editar")
+    public String editar(Funcionario funcionario, RedirectAttributes attr) {
+        funcionarioRepository.save(funcionario);
+        attr.addAttribute("success", "Funcionário Editado com Sucesso!");
+        return "redirect:/funcionarios/listar";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id , ModelMap model) {
+        funcionarioRepository.deleteById(id);
+        model.addAttribute("success", "Funcionário excluído com sucesso");
+        return listar(model);
+    }
+    
+    
+    
 
 }
