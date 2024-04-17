@@ -56,5 +56,14 @@ public class ObrasController {
         return "redirect:/obras/listar";
     }
 
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
+        obraRepository.deleteById(id);
+        model.addAttribute("success", "Obra excluído com sucesso");
+        return listar(model);
+
+    }
+    
+
     
 }

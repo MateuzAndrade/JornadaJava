@@ -1,5 +1,11 @@
 package com.mateuserp.sistemagestaodeobras.model;
 
+import java.io.Serial;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,19 +34,26 @@ public class Custo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descricao", nullable = false, unique = true, length = 200)
+    @Column(name = "descricao", nullable = false, unique = false, length = 200)
     @Getter
     @Setter
     private String descricao;
-
-    @Column(name = "valor", nullable = false, unique = true)
-    @Getter
-    @Setter
-    private Double Valor;
 
     @ManyToOne
     @JoinColumn(name = "obra_id_fk")
     @Getter
     @Setter
     private Obra obra;
+    
+    @Column(name = "valor", nullable = false, unique = false)
+    @Getter
+    @Setter
+    private BigDecimal Valor;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "dataCusto", nullable = false, unique = false)
+    @Getter
+    @Setter
+    private Date data;
+
 }
