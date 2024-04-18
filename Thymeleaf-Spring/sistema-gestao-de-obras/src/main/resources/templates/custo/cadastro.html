@@ -14,7 +14,7 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span>Cadastrar Custos</span>
+						<span>Cadastrar Custos Diversos</span>
 					</li>
 				</ul>
 			</div>
@@ -30,25 +30,36 @@
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="nome">Descrição do Custo</label>
-						<input type="text" class="form-control" id="nome" placeholder="Descrição do Custo"
+						<input type="text" class="form-control" id="nome" placeholder="Descrição do Custo, exemplo areia, terreno, cimento, aqui é descrição não quantidade."
 							autofocus="autofocus" name="nome" th:field="*{descricao}" />
 					</div>
-					<div class="form-group col-md-12">
+					<div class="form-group col-md-6">
 						<label for="obra">Obra</label>
-						<select id="obra" class="form-control" name="obra" th:field="*{obra}">
-							<option value="">Selecione..</option>
+						<select id="obra" class="form-control" name="obra" th:field="*{obra}" placeholder="aqui">
 							<option th:each="o : ${obra}" th:value="${o.id}" th:text="${o.nome}"></option>
 						</select>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="cidade">Data Custo</label>
-						<input type="date" class="form-control" id="data" name="data" th:field="*{data}" placeholder="dd/mm/yyyy"/>
+						<input type="date" class="form-control" id="data" name="data" th:field="*{data}"
+							placeholder="dd/mm/yyyy" />
 					</div>
 					<div class="form-group col-md-6">
+						<label for="nome">Unidade de Medida</label>
+						<input type="text" class="form-control" id="valor" placeholder="Unidade, exempli carrada,und,litros etc.." autofocus="autofocus"
+							name="valor" th:field="*{unidadeMedida}" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="nome">Quantidade</label>
+						<input type="text" class="form-control" id="valor" placeholder="Quantidade Exemplo 1,2..." autofocus="autofocus"
+							name="valor" th:field="*{quantidade}" />
+					</div>
+					<div class="form-group col-md-12">
 						<label for="nome">Valor</label>
-						<input type="text" class="form-control" id="valor" placeholder="Valor" autofocus="autofocus"
+						<input type="text" class="form-control" id="valor" placeholder="Valor deve ser informado com os centavos." autofocus="autofocus"
 							name="valor" th:field="*{valor}" />
 					</div>
+					<p class="text-muted" role="alert">Importante tudo pode ser editado.</p>
 				</div>
 				<input type="hidden" id="id" name="id" value="" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>

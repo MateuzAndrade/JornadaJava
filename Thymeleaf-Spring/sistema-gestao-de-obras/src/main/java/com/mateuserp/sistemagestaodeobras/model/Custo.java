@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,8 +49,19 @@ public class Custo {
     @Column(name = "valor", nullable = false, unique = false)
     @Getter
     @Setter
-    private BigDecimal Valor;
+    private BigDecimal valor;
 
+    @Column(name = "quantidade", nullable = false, unique = false)
+    @Getter
+    @Setter
+    private Integer quantidade;
+
+    @Column(name = "unidade_medida", nullable = false, unique = false)
+    @Getter
+    @Setter
+    private String unidadeMedida;
+
+    @DateTimeFormat(iso = ISO.DATE)
     @Temporal(TemporalType.DATE)
     @Column(name = "dataCusto", nullable = false, unique = false)
     @Getter
