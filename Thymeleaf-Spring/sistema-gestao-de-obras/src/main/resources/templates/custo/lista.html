@@ -43,7 +43,7 @@
 					<tbody>
 						<tr th:each="c : ${custo}">
 							<td th:text="${c.id}"></td>
-							<td th:text="${#dates.format(c.data, 'dd/MM/yyyy')}"></td>
+							<td th:text="${#temporals.format(c.data, 'dd/MM/yyyy')}"></td>
 							<td th:text="${c.descricao}"></td>
 							<td th:text="${c.unidadeMedida}"></td>
 							<td th:text="${c.quantidade}"></td>

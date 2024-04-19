@@ -3,6 +3,10 @@ package com.mateuserp.sistemagestaodeobras.controller;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,17 +49,22 @@ public class CustoController {
     }
 
     @ModelAttribute("obra")
-    public List<Obra> getObra(){
+    public List<Obra> getObra() {
         return obraRepository.findAll();
     }
 
     @PostMapping("/salvar")
-    public String salvar(@DateTimeFormat(pattern = "dd/MM/yyyy") Custo custo, RedirectAttributes attr) {
+    public String salvar(@ModelAttribute Custo custo, RedirectAttributes attr) {
+        LocalDate dataRecebida = custo.getData();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = dataRecebida.format(formatter);
+        LocalDate dataAjustada = LocalDate.parse(dataFormatada, formatter);
+        custo.setData(dataAjustada);
         custoRespository.save(custo);
         attr.addFlashAttribute("success", "Custo Inserido com Sucesso no Sistema");
         return "redirect:/custos/cadastrar";
     }
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         DecimalFormat df = new DecimalFormat("#,##0.00");

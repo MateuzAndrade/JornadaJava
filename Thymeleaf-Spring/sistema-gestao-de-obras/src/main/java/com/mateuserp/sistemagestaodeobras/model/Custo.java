@@ -2,6 +2,7 @@ package com.mateuserp.sistemagestaodeobras.model;
 
 import java.io.Serial;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -61,11 +62,10 @@ public class Custo {
     @Setter
     private String unidadeMedida;
 
-    @DateTimeFormat(iso = ISO.DATE)
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "dataCusto", nullable = false, unique = false)
     @Getter
     @Setter
-    private Date data;
+    private LocalDate data;
 
 }
