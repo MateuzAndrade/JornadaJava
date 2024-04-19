@@ -8,7 +8,6 @@
 <body>
 
 	<section class="layout-content" layout:fragment="~{corpo}">
-
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
@@ -23,6 +22,77 @@
 				<span>Novo Custo</span>
 			</a>
 		</nav>
+		<div class="container">
+			<p>
+				<i class="oi oi-magnifying-glass"></i><span></span>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+						aria-controls="collapseNome">Nome
+				</button>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseObra"
+						aria-controls="collapseCargo">Obra
+				</button>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseData"
+						aria-controls="collapseData">Datas
+				</button>
+			</p>
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseNome">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET" th:action="@{/custos/buscar/nome}">
+								<input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+									   name="nome" />
+								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseCargo">
+
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET" action="/funcionarios/buscar/cargo">
+								<select class="form-control mr-sm-2" name="cargo" aria-label="Search">
+									<option value="">Cargo</option>
+									<option value="1">Auxiliar Contábil</option>
+									<option value="2">Auxiliar Administrativo</option>
+									<option value="3">Contador</option>
+									<option value="4">Adminitrador</option>
+									<option value="5">Programado PHP</option>
+									<option value="6">Desenvolvedor Java Jr.</option>
+									<option value="7">Desenvolvedor Java Pleno</option>
+									<option value="8">Desenvolvedor Java Senior</option>
+									<option value="9">Auxiliar de RH</option>
+									<option value="10">Coordenador de RH</option>
+									<option value="11">Psicologo</option>
+								</select>
+								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseData">
+
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET" action="/funcionarios/buscar/data">
+								<input class="form-control mr-sm-2" type="date" aria-label="Search"
+									   name="entrada" />
+								<input class="form-control mr-sm-2" type="date" aria-label="Search"
+									   name="saida" />
+								<button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
 
 		<div class="container" id="listagem">
 			<div th:replace="~{fragments/alert}"></div>
@@ -50,12 +120,12 @@
 							<td th:text="${c.valor}"></td>
 							<td th:text="${c.obra.nome}"></td>
 							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/11" role="button">
+								<a class="btn btn-info btn-sm" th:href="@{/custos/editar/{id} (id=${c.id})}" role="button">
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
+								<button th:attr="id= 'btn_custos/excluir/' + ${c.id}" type="button" class="btn btn-danger btn-sm"
+	                                    data-toggle="modal" data-target="#myModal">
+	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
 								</button>
 							</td>
 						</tr>
@@ -63,7 +133,7 @@
 				</table>
 			</div>
 		</div>
-
+		<div th:replace="~{fragments/modal :: modal}"></div>
 	</section>
 
 </body>

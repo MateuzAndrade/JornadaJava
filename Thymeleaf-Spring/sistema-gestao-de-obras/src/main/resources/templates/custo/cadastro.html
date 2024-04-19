@@ -26,7 +26,7 @@
 
 		<div class="container" id="cadastro">
 			<div th:replace="~{fragments/alert}"></div>
-			<form th:action="@{/custos/salvar}" th:object="${custo}" method="POST">
+			<form th:action="${custo.id == nul} ? @{/custos/salvar} : @{/custos/editar}" th:object="${custo}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="nome">Descrição do Custo</label>
@@ -36,13 +36,14 @@
 					<div class="form-group col-md-6">
 						<label for="obra">Obra</label>
 						<select id="obra" class="form-control" name="obra" th:field="*{obra}" placeholder="aqui">
+							<option value="">Selecione</option>
 							<option th:each="o : ${obra}" th:value="${o.id}" th:text="${o.nome}"></option>
 						</select>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="cidade">Data Custo</label>
 						<input type="date" class="form-control" id="data" name="data" th:field="*{data}"
-							placeholder="dd/mm/yyyy" timezone="America/Sao_Paulo"/>
+							placeholder="dd/mm/yyyy" />
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nome">Unidade de Medida</label>
@@ -57,11 +58,11 @@
 					<div class="form-group col-md-12">
 						<label for="nome">Valor</label>
 						<input type="text" class="form-control" id="valor" placeholder="Valor deve ser informado com os centavos." autofocus="autofocus"
-							name="valor" th:field="*{valor}" />
+							name="valor" th:field="*{valor}" onblur="formatarSalario()"/>
 					</div>
-					<p class="text-muted" role="alert">Importante tudo pode ser editado.</p>
+					<p class="text-muted" role="alert">Importante tudo pode ser editado, em caso de <strong>Edição</strong>  é necessaário informar novamente a data.</p>
 				</div>
-				<input type="hidden" id="id" name="id" value="" />
+				<input type="hidden" id="id" name="id" th:field="*{id}"  />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 		</div>

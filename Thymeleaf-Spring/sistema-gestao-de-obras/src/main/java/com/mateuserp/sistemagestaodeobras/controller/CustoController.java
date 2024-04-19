@@ -4,19 +4,19 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,7 +25,6 @@ import com.mateuserp.sistemagestaodeobras.model.Obra;
 import com.mateuserp.sistemagestaodeobras.repository.CustoRespository;
 import com.mateuserp.sistemagestaodeobras.repository.ObraRepository;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/custos")
@@ -74,5 +73,31 @@ public class CustoController {
 
         binder.registerCustomEditor(BigDecimal.class, new CustomNumberEditor(BigDecimal.class, df, true));
     }
+
+    @GetMapping("/editar/{id}")
+    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+        Optional<Custo> cusOptional = custoRespository.findById(id);
+        Custo custo = cusOptional.get();
+        model.addAttribute("custo", custo);
+        return "custo/cadastro";
+    }
+
+    @PostMapping("/editar")
+    public String editar(Custo custo, RedirectAttributes attr) {
+        custoRespository.save(custo);
+        attr.addAttribute("success", "Custo Editado com Sucesso!");
+        return "redirect:/custos/listar";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id , ModelMap model) {
+        custoRespository.deleteById(id);
+        model.addAttribute("success", "Custo excluído com sucesso");
+        return listar(model);
+    }
+
+
+
+
 
 }
