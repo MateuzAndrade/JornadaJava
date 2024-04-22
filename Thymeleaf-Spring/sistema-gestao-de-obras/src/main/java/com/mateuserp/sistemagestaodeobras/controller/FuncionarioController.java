@@ -39,13 +39,13 @@ public class FuncionarioController {
 
     @RequestMapping("/cadastrar")
     public String cadastrar(Funcionario funcionario) {
-        return "/funcionario/cadastro";
+        return "funcionario/cadastro";
     }
 
     @RequestMapping("/listar")
     public String listar(ModelMap model) {
         model.addAttribute("funcionarios", funcionarioRepository.findAll());
-        return "/funcionario/lista";
+        return "funcionario/lista";
     }
 
     @PostMapping("/salvar")

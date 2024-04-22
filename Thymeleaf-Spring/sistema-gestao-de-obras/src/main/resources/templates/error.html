@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<link rel="icon" href="/image/favicon.png" />
+
+	<title th:text="${status}"></title>
+
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container text-center mt-5">
+		<img src="/image/erroMenina.jpeg" alt="Imagem de Erro" class="img-fluid mb-4"
+			style="max-width: 300px;" /><br><br>
+		<h1 class="h3 mb-3 font-weight-normal text-danger">
+			<i class="oi oi-warning"></i>
+			<span th:text="${status}"></span>
+		</h1>
+		<h2 class="text-danger mb-4">OPS! Parece que você fez algo errado!</h2>
+
+		<div>
+			<a class="btn btn-primary" type="button" href="javascript:history.back()">Voltar a página anterior</a>
+		</div>
+	</div>
+</body>
+
+</html>

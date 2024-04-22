@@ -25,13 +25,13 @@ public class ObrasController {
 
     @RequestMapping("/cadastrar")
     public String cadastrar(Obra obra) {
-        return "/obra/cadastro";
+        return "obra/cadastro";
     }
 
     @RequestMapping("/listar")
     public String listar(ModelMap model) {
         model.addAttribute("obra", obraRepository.findAll());
-        return "/obra/lista";
+        return "obra/lista";
     }
 
     @PostMapping("/salvar")

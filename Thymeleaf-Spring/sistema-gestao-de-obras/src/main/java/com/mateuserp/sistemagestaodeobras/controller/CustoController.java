@@ -25,6 +25,7 @@ import com.mateuserp.sistemagestaodeobras.model.Obra;
 import com.mateuserp.sistemagestaodeobras.repository.CustoRespository;
 import com.mateuserp.sistemagestaodeobras.repository.ObraRepository;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/custos")
@@ -38,13 +39,13 @@ public class CustoController {
 
     @RequestMapping("/cadastrar")
     public String cadastrar(Custo custo) {
-        return "/custo/cadastro";
+        return "custo/cadastro";
     }
 
     @RequestMapping("/listar")
     public String listar(ModelMap model) {
         model.addAttribute("custo", custoRespository.findAll());
-        return "/custo/lista";
+        return "custo/lista";
     }
 
     @ModelAttribute("obra")
@@ -90,14 +91,32 @@ public class CustoController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id , ModelMap model) {
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
         custoRespository.deleteById(id);
         model.addAttribute("success", "Custo excluído com sucesso");
         return listar(model);
     }
 
+    @GetMapping("/buscar/descricao")
+    public String getDescricao(@RequestParam("descricao") String descricao, ModelMap model) {
+        model.addAttribute("custo", custoRespository.findByDescricaoContaining(descricao));
+        return "custo/lista";
+    }
 
-
-
+    @GetMapping("/buscar/obra")
+    public String getPorObra(@RequestParam(name = "id", required = false) Long id, ModelMap model) {
+        if (id != null) {
+            Optional<Obra> obrOptional = obraRepository.findById(id);
+            if (obrOptional.isPresent()) {
+                Obra obra = obrOptional.get();
+                List<Custo> custosDaObra = custoRespository.findByObra(obra);
+                model.addAttribute("obra", obra);
+                model.addAttribute("custo", custosDaObra);
+            }
+        } else {
+            return "redirect:/custos/listar";
+        }
+        return "custo/lista";
+    }
 
 }

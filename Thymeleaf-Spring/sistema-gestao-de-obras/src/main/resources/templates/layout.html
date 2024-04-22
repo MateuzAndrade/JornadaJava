@@ -48,9 +48,9 @@
     <script type="text/javascript">
 
         var url = '';
-
         $('button[id*="btn_"]').click(function () {
-            url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+            // Use uma URL relativa para o caminho base
+            url = "/" + $(this).attr('id').split("_")[1];
         });
 
         $('#ok_confirm').click(function () {
@@ -75,6 +75,22 @@
                 $(".sidebar").toggleClass("sidebar-open");
             })
         });
+        function limparFiltro() {
+            document.getElementById("id").value = "";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            calcularSoma();
+        });
+
+        function calcularSoma() {
+            var total = 0;
+            var valores = document.querySelectorAll("tbody td:nth-child(6)"); // Seleciona todas as células da 6ª coluna
+            valores.forEach(function (valor) {
+                total += parseFloat(valor.textContent); // Soma os valores convertidos para float
+            });
+            document.getElementById("total").textContent = total.toFixed(2); // Exibe o total com duas casas decimais
+        }
     </script>
 
     </script>

@@ -10,7 +10,7 @@ public class AnaliseObraController {
 
     @GetMapping("/resultado")
     public String resultado() {
-        return"/analiseObra/resultado";
+        return"analiseObra/resultado";
     }
     
 
