@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+
+	<section class="layout-content" layout:fragment="~{corpo}">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span>Cadastrar Custos Folha</span>
+					</li>
+				</ul>
+			</div>
+			<a class="btn btn-primary btn-md" href="/custosFolha/listar" role="button">
+				<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+				<span>Listar Custos Folha</span>
+			</a>
+		</nav>
+
+		<div class="container" id="cadastro">
+			<div th:replace="~{fragments/alert}"></div>
+			<form th:action="${custoFolha.id == nul} ? @{/custosFolha/salvar} : @{/custosFolha/editar}" th:object="${custoFolha}" method="POST">
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="nome">Descrição do Custo</label>
+						<input type="text" class="form-control" id="nome" placeholder="Descrição do Custo, exemplo areia, terreno, cimento, aqui é descrição não quantidade."
+							autofocus="autofocus" name="nome" th:field="*{descricao}" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="obra">Obra</label>
+						<select id="obra" class="form-control" name="obra" th:field="*{obra}" placeholder="aqui">
+							<option value="">Selecione</option>
+							<option th:each="o : ${obra}" th:value="${o.id}" th:text="${o.nome}"></option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="funcionario">Funcionario</label>
+						<select id="obra" class="form-control" name="obra" th:field="*{funcionario}" placeholder="aqui">
+							<option value="">Selecione</option>
+							<option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="cidade">Data Custo</label>
+						<input type="date" class="form-control" id="data" name="data" th:field="*{data}"
+							placeholder="dd/mm/yyyy" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="nome">Valor</label>
+						<input type="text" class="form-control" id="valor" placeholder="Valor deve ser informado com os centavos." autofocus="autofocus"
+							name="valor" th:field="*{valor}" onblur="formatarSalario()"/>
+					</div>
+					<p class="text-muted" role="alert">Importante tudo pode ser editado, em caso de <strong>Edição</strong>  é necessaário informar novamente a data.</p>
+				</div>
+				<input type="hidden" id="id" name="id" th:field="*{id}"  />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+
+</html>
