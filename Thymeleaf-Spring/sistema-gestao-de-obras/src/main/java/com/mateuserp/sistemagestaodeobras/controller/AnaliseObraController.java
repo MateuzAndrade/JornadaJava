@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mateuserp.sistemagestaodeobras.model.Obra;
 import com.mateuserp.sistemagestaodeobras.repository.CustoFolhaRepository;
@@ -36,17 +39,31 @@ public class AnaliseObraController {
     }
 
     @GetMapping("/resultado")
-    public String resultado(Model model) {
+    public String resultado(@RequestParam(value = "obraId", required = false) Long obraId, Model model) {
 
-        BigDecimal totalCustos = custoRespository.sumValor();
-        BigDecimal totalCustosFolha = custoFolhaRepository.sumValor();
+        BigDecimal totalCustos;
+        BigDecimal totalCustosFolha;
 
+        if (obraId != null) {
+            totalCustos = custoRespository.sumValorByObra(obraId);
+            totalCustosFolha = custoFolhaRepository.sumValorByObra(obraId);
+        } else {
+            totalCustos = custoRespository.sumValor();
+            totalCustosFolha = custoFolhaRepository.sumValor();
+        }
+
+        // Calculando o somatório das outras duas colunas
+        BigDecimal total = totalCustos.add(totalCustosFolha);
+
+        List<Obra> obra =  obraRepository.findAll();
         model.addAttribute("totalCustos", totalCustos);
         model.addAttribute("totalCustosFolha", totalCustosFolha);
+        model.addAttribute("total", total); // Adicionando o somatório total
 
-
-        return"analiseObra/resultado";
+        return "analiseObra/resultado";
     }
+
+
     
 
 }

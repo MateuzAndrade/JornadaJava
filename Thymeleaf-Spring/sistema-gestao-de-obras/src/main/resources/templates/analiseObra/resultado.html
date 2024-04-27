@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}">
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
+	<!-- Adicione o link para o Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,188 +16,100 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span>Lista de Cargos</span>
+						<span>Análise de Obra</span>
 					</li>
 				</ul>
 			</div>
-			<a class="btn btn-primary btn-md" href="/cargos/cadastrar" role="button">
-				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-				<span>Novo Cargo</span>
-			</a>
 		</nav>
-
-		<div class="container" id="listagem">
-			<div class="table-responsive">
-				<table class="table table-striped table-hover table-sm">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Cargo</th>
-							<th>Departamento</th>
-							<th>Ação</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Auxiliar Contábil</td>
-							<td>Contabilidade</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/1" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Auxiliar Administrativo</td>
-							<td>Administração</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/2" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Contador</td>
-							<td>Contabilidade</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/3" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Adminitrador</td>
-							<td>Administração</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/4" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>Programado PHP</td>
-							<td>Tecnologia da Informação</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/5" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td>Desenvolvedor Java Jr.</td>
-							<td>Tecnologia da Informação</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/6" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>7</td>
-							<td>Desenvolvedor Java Pleno</td>
-							<td>Tecnologia da Informação</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/7" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>8</td>
-							<td>Desenvolvedor Java Senior</td>
-							<td>Tecnologia da Informação</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/8" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>9</td>
-							<td>Auxiliar de RH</td>
-							<td>Recursos Humanos</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/9" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>10</td>
-							<td>Coordenador de RH</td>
-							<td>Recursos Humanos</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/10" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>11</td>
-							<td>Psicologo</td>
-							<td>Recursos Humanos</td>
-							<td colspan="2">
-								<a class="btn btn-info btn-sm" href="/cargos/editar/11" role="button">
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		<!-- Contêiner Bootstrap para centralizar o gráfico -->
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<!-- Adicione o seletor de obra -->
+					<label for="obraSelect" class="form-label">Selecione a obra:</label>
+					<select class="form-select" id="obraSelect">
+						<option value="">Selecione...</option>
+						<!-- Iterar sobre as obras cadastradas -->
+						<option th:each="obra : ${obra}" th:value="${obra.id}" th:text="${obra.nome}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col">
+					<canvas id="grafico" width="800" height="600"></canvas>
+					<!-- Ajuste as dimensões do canvas conforme necessário -->
+				</div>
 			</div>
 		</div>
 
 	</section>
+
+	<!-- Adicione o link para o Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Adicione a biblioteca jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var ctx = document.getElementById('grafico').getContext('2d');
+
+		var grafico = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Custos', 'Custos de Folha', 'Total'], // Atualize os rótulos para refletir os tipos de custos
+				datasets: [{
+					label: 'Total de Custos',
+					data: [/*[[${totalCustos}]]*/, /*[[${totalCustosFolha}]]*/, /*[[${total}]]*/], // Valores iniciais
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)', // Cor para os custos
+						'rgba(54, 162, 235, 0.2)', // Cor para os custos de folha
+						'rgba(75, 192, 192, 0.2)' // Cor para o somatório total
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)', // Cor da borda para os custos
+						'rgba(54, 162, 235, 1)', // Cor da borda para os custos de folha
+						'rgba(75, 192, 192, 1)' // Cor da borda para o somatório total
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+
+		// Adicione isso ao final do seu script JavaScript
+		document.getElementById('obraSelect').addEventListener('change', function () {
+			var obraId = this.value; // Captura o ID da obra selecionada
+
+			// Envia uma requisição AJAX para o backend
+			$.ajax({
+				url: '/resultado?obraId=' + obraId,
+				type: 'GET',
+				success: function (data) {
+					// Atualiza os valores do gráfico com os novos dados
+					var totalCustos = data.totalCustos;
+					var totalCustosFolha = data.totalCustosFolha;
+					var total = data.total;
+
+					// Atualiza o gráfico
+					grafico.data.datasets[0].data = [totalCustos, totalCustosFolha, total];
+					grafico.update();
+				},
+				error: function (xhr, status, error) {
+					console.error('Erro ao buscar os dados da obra:', error);
+				}
+			});
+		});
+		/*]]>*/
+	</script>
 
 </body>
 
