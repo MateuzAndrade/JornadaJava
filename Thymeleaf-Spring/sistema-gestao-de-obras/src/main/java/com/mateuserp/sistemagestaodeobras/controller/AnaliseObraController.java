@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +20,8 @@ import com.mateuserp.sistemagestaodeobras.repository.ObraRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping("/analiseObra")
@@ -37,6 +40,14 @@ public class AnaliseObraController {
     public List<Obra> getObra() {
         return obraRepository.findAll();
     }
+
+    @RequestMapping("/listar")
+    public String listar(ModelMap model) {
+        model.addAttribute("custo",custoRespository.findAll());
+        model.addAttribute("custoFolha", custoFolhaRepository.findAll());
+        return "analiseObra/lista";
+    }
+    
 
     @GetMapping("/resultado")
     public String resultado(@RequestParam(value = "obraId", required = false) Long obraId, Model model) {

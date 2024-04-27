@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{layout}">
 
 <head>
 	<meta charset="UTF-8" />
@@ -22,19 +22,8 @@
 			</div>
 		</nav>
 		<!-- Contêiner Bootstrap para centralizar o gráfico -->
-		<div class="container">
+		<div class="container d-flex justify-content-center">
 			<div class="row">
-				<div class="col">
-					<!-- Adicione o seletor de obra -->
-					<label for="obraSelect" class="form-label">Selecione a obra:</label>
-					<select class="form-select" id="obraSelect">
-						<option value="">Selecione...</option>
-						<!-- Iterar sobre as obras cadastradas -->
-						<option th:each="obra : ${obra}" th:value="${obra.id}" th:text="${obra.nome}"></option>
-					</select>
-				</div>
-			</div>
-			<div class="row mt-3">
 				<div class="col">
 					<canvas id="grafico" width="800" height="600"></canvas>
 					<!-- Ajuste as dimensões do canvas conforme necessário -->
@@ -42,74 +31,51 @@
 			</div>
 		</div>
 
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			var ctx = document.getElementById('grafico').getContext('2d');
+
+			var totalCustos = /*[[${totalCustos}]]*/ 0;
+			var totalCustosFolha = /*[[${totalCustosFolha}]]*/ 0;
+			var total = /*[[${total}]]*/ 0; // Recebendo o somatório total
+
+			var grafico = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ['Custos Diversos', 'Custos de Folha', 'Total'], // Adicionando a terceira coluna com o somatório
+					datasets: [{
+						label: 'Total de Custos',
+						data: [totalCustos, totalCustosFolha, total], // Adicionando o somatório total
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)', // Cor para os custos
+							'rgba(54, 162, 235, 0.2)', // Cor para os custos de folha
+							'rgba(75, 192, 192, 0.2)' // Cor para o somatório total
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)', // Cor da borda para os custos
+							'rgba(54, 162, 235, 1)', // Cor da borda para os custos de folha
+							'rgba(75, 192, 192, 1)' // Cor da borda para o somatório total
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+			/*]]>*/
+		</script>
+
 	</section>
 
 	<!-- Adicione o link para o Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Adicione a biblioteca jQuery -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-		var ctx = document.getElementById('grafico').getContext('2d');
-
-		var grafico = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ['Custos', 'Custos de Folha', 'Total'], // Atualize os rótulos para refletir os tipos de custos
-				datasets: [{
-					label: 'Total de Custos',
-					data: [/*[[${totalCustos}]]*/, /*[[${totalCustosFolha}]]*/, /*[[${total}]]*/], // Valores iniciais
-					backgroundColor: [
-						'rgba(255, 99, 132, 0.2)', // Cor para os custos
-						'rgba(54, 162, 235, 0.2)', // Cor para os custos de folha
-						'rgba(75, 192, 192, 0.2)' // Cor para o somatório total
-					],
-					borderColor: [
-						'rgba(255, 99, 132, 1)', // Cor da borda para os custos
-						'rgba(54, 162, 235, 1)', // Cor da borda para os custos de folha
-						'rgba(75, 192, 192, 1)' // Cor da borda para o somatório total
-					],
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
-		});
-
-		// Adicione isso ao final do seu script JavaScript
-		document.getElementById('obraSelect').addEventListener('change', function () {
-			var obraId = this.value; // Captura o ID da obra selecionada
-
-			// Envia uma requisição AJAX para o backend
-			$.ajax({
-				url: '/resultado?obraId=' + obraId,
-				type: 'GET',
-				success: function (data) {
-					// Atualiza os valores do gráfico com os novos dados
-					var totalCustos = data.totalCustos;
-					var totalCustosFolha = data.totalCustosFolha;
-					var total = data.total;
-
-					// Atualiza o gráfico
-					grafico.data.datasets[0].data = [totalCustos, totalCustosFolha, total];
-					grafico.update();
-				},
-				error: function (xhr, status, error) {
-					console.error('Erro ao buscar os dados da obra:', error);
-				}
-			});
-		});
-		/*]]>*/
-	</script>
 
 </body>
 

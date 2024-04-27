@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+
+	<section class="layout-content" layout:fragment="~{corpo}">
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span>Lista de Custos Gerais</span>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<p>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseObra"
+					aria-controls="collapseCargo">Obra
+				</button>
+			</p>
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseNome">
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET" th:action="@{/custosFolha/buscar/descricao}">
+								<input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+									th:name="descricao" />
+								<button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+								<div class="mx-2"></div>
+								<button class="btn btn-outline-success my-2 my-sm-0" onclick="limparFiltro()">Limpar
+									Pesquisa</button>
+							</form>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="collapse" id="collapseObra">
+
+						<nav class="navbar navbar-light bg-light">
+							<form class="form-inline" method="GET" th:action="@{/custosFolha/buscar/obra}">
+								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
+									<option value="">Selecione..</option>
+									<option th:each="o : ${obra}" th:value="${o.id}" th:text="${o.nome}"></option>
+
+								</select>
+								<button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+								<div class="mx-2"></div>
+								<button class="btn btn-outline-success my-2 my-sm-0" onclick="limparFiltro()">Limpar
+									Pesquisa</button>
+							</form>
+
+						</nav>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="container" id="listagem">
+				<div th:replace="~{fragments/alert}"></div>
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>Data</th>
+								<th>Obra.</th>
+								<th>Descriçao</th>
+								<th>Funcionário</th>
+								<th>Unidade</th>
+								<th>Quantidade</th>
+								<th>Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cf : ${custoFolha}">
+								<td th:text="${#temporals.format(cf.data, 'dd/MM/yyyy')}"></td>
+								<td th:text="${cf.obra.nome}"></td>
+								<td th:text="${cf.descricao}"></td>
+								<td th:text="${cf.funcionario.nome}"></td>
+								<td>Tipo Folha</td>
+								<td>Tipo Folha</td>
+								<td th:text="${cf.valor}"></td>
+							</tr>
+							<tr th:each="c : ${custo}">
+								<td th:text="${#temporals.format(c.data, 'dd/MM/yyyy')}"></td>
+								<td th:text="${c.obra.nome}"></td>
+								<td th:text="${c.descricao}"></td>
+								<td>Tipo Custo</td>
+								<td th:text="${c.unidadeMedida}"></td>
+								<td th:text="${c.quantidade}"></td>
+								<td th:text="${c.valor}"></td>
+						</tbody>
+					</table>
+				</div>
+				<div class="row mt-3">
+					<div class="col-sm-12">
+						<h4>Total: <span id="total" class="badge badge-success"><span id="total-value"></span></span>
+						</h4>
+
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{fragments/modal :: modal}"></div>
+	</section>
+</body>
+
+</html>

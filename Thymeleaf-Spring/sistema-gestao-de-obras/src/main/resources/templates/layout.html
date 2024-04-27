@@ -49,45 +49,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0-beta.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
-
-        var url = '';
-        $('button[id*="btn_"]').click(function () {
-            // Use uma URL relativa para o caminho base
-            url = "/" + $(this).attr('id').split("_")[1];
-        });
-
-        $('#ok_confirm').click(function () {
-            document.location.href = url;
-        });
-
-        $(function () {
-            $('[data-toggle="popover"]').popover();
-        });
-
         $(document).ready(function () {
+            $('button[id*="btn_"]').click(function () {
+                url = "/" + $(this).attr('id').split("_")[1];
+            });
+
+            $('#ok_confirm').click(function () {
+                document.location.href = url;
+            });
+
+            $('[data-toggle="popover"]').popover();
 
             setTimeout(function () {
                 $(".alert").fadeOut("slow", function () {
-                    $("this").alert('close');
-                })
+                    $(this).alert('close');
+                });
             }, 5000);
-
-
 
             $(".navbar-toggle").click(function () {
                 $(".sidebar").toggleClass("sidebar-open");
-            })
+            });
+
+            calcularSoma();
         });
+
         function limparFiltro() {
             document.getElementById("id").value = "";
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            calcularSoma();
-        });
 
         function formatarNumero(numero) {
             var partes = numero.split(".");
@@ -96,19 +89,22 @@
             return inteiro + centavos;
         }
 
+        // Função para calcular a soma
         function calcularSoma() {
             var total = 0;
-            var valores = document.querySelectorAll("tbody td:nth-child(6)");
-            valores.forEach(function (valor) {
-                total += parseFloat(valor.textContent);
+            var valores = document.querySelectorAll("tbody td");
+            valores.forEach(function (celula) {
+                var texto = celula.textContent.trim().replace(",", ".");
+                if (!isNaN(parseFloat(texto))) {
+                    total += parseFloat(texto);
+                }
             });
             var totalFormatado = "R$ " + formatarNumero(total.toFixed(2));
             document.getElementById("total").textContent = totalFormatado;
         }
-
     </script>
 
-    </script>
+
 </body>
 
 </html>
