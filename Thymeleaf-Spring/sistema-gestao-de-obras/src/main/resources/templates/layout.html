@@ -89,15 +89,11 @@
             return inteiro + centavos;
         }
 
-        // Função para calcular a soma
         function calcularSoma() {
             var total = 0;
-            var valores = document.querySelectorAll("tbody td");
-            valores.forEach(function (celula) {
-                var texto = celula.textContent.trim().replace(",", ".");
-                if (!isNaN(parseFloat(texto))) {
-                    total += parseFloat(texto);
-                }
+            var valores = document.querySelectorAll("tbody td:nth-child(6)");
+            valores.forEach(function (valor) {
+                total += parseFloat(valor.textContent);
             });
             var totalFormatado = "R$ " + formatarNumero(total.toFixed(2));
             document.getElementById("total").textContent = totalFormatado;

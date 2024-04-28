@@ -46,7 +46,7 @@
 					<div class="collapse" id="collapseObra">
 
 						<nav class="navbar navbar-light bg-light">
-							<form class="form-inline" method="GET" th:action="@{/custosFolha/buscar/obra}">
+							<form class="form-inline" method="GET" th:action="@{/analiseObra/buscar/obra}">
 								<select class="form-control mr-sm-2" th:name="id" aria-label="Search">
 									<option value="">Selecione..</option>
 									<option th:each="o : ${obra}" th:value="${o.id}" th:text="${o.nome}"></option>
@@ -74,9 +74,9 @@
 								<th>Obra.</th>
 								<th>Descriçao</th>
 								<th>Funcionário</th>
+								<th>Valor</th>
 								<th>Unidade</th>
 								<th>Quantidade</th>
-								<th>Valor</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,8 +86,8 @@
 								<td th:text="${cf.descricao}"></td>
 								<td th:text="${cf.funcionario.nome}"></td>
 								<td>Tipo Folha</td>
-								<td>Tipo Folha</td>
 								<td th:text="${cf.valor}"></td>
+								<td>Tipo Folha</td>
 							</tr>
 							<tr th:each="c : ${custo}">
 								<td th:text="${#temporals.format(c.data, 'dd/MM/yyyy')}"></td>
@@ -95,8 +95,8 @@
 								<td th:text="${c.descricao}"></td>
 								<td>Tipo Custo</td>
 								<td th:text="${c.unidadeMedida}"></td>
-								<td th:text="${c.quantidade}"></td>
 								<td th:text="${c.valor}"></td>
+								<td th:text="${c.quantidade}"></td>
 						</tbody>
 					</table>
 				</div>

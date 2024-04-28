@@ -13,6 +13,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mateuserp.sistemagestaodeobras.model.Custo;
+import com.mateuserp.sistemagestaodeobras.model.CustoFolha;
 import com.mateuserp.sistemagestaodeobras.model.Obra;
 import com.mateuserp.sistemagestaodeobras.repository.CustoFolhaRepository;
 import com.mateuserp.sistemagestaodeobras.repository.CustoRespository;
@@ -66,12 +68,27 @@ public class AnaliseObraController {
         // Calculando o somatório das outras duas colunas
         BigDecimal total = totalCustos.add(totalCustosFolha);
 
-        List<Obra> obra =  obraRepository.findAll();
         model.addAttribute("totalCustos", totalCustos);
         model.addAttribute("totalCustosFolha", totalCustosFolha);
         model.addAttribute("total", total); // Adicionando o somatório total
 
         return "analiseObra/resultado";
+    }
+
+    @GetMapping("/buscar/obra")
+    public String getPorObra(@RequestParam(name = "id", required = false) Long id, ModelMap model) {
+        if (id != null) {
+            Optional<Obra> obrOptional = obraRepository.findById(id);
+            Obra obra = obrOptional.get();
+            List<CustoFolha> custosFolha = custoFolhaRepository.findByObra(obra);
+            List<Custo> custosDaObra = custoRespository.findByObra(obra);
+            model.addAttribute("obra", obra);
+            model.addAttribute("custo", custosDaObra);
+            model.addAttribute("custoFolha", custosFolha);
+        } else {
+            return "redirect:/analiseObra/listar";
+        }
+        return "analiseObra/lista";
     }
 
 
