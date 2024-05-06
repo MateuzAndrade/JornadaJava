@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Curso } from '../model/curso';
 import { HttpClient } from '@angular/common/http';
+import { delay, first, tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -10,11 +12,14 @@ import { HttpClient } from '@angular/common/http';
 
 export class CursosService {
 
+  private readonly API = '/assets/qcursos.json';
+
   constructor(private httpClient: HttpClient) { }
 
-  list(): Curso[] {
-    return [
-      { _id: "1", nome: "Angular", categoria: "Front-end" }
-    ];
+  list() {
+    return this.httpClient.get<Curso[]>(this.API).pipe(
+      first(),
+      delay(4000)
+    );
   }
 }

@@ -1,3 +1,11 @@
 table {
   width: 100%;
 }
+
+.carregamento-spinner{
+  padding: 45px;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
