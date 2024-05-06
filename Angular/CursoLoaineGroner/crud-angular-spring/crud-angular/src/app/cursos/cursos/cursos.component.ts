@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { error } from 'node:console';
 import { MatDialog } from '@angular/material/dialog';
 import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cursos',
@@ -20,13 +22,15 @@ import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-di
     MatToolbarModule,
     MatProgressSpinnerModule,
     CommonModule,
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss',
 })
 export class CursosComponent {
   cursos$: Observable<Curso[]>;
-  displayedColumns = ['nome', 'categoria'];
+  displayedColumns = ['nome', 'categoria','actions'];
 
   constructor(private cursosService: CursosService, public dialog: MatDialog) {
     this.cursos$ = this.cursosService.list().pipe(

@@ -12,14 +12,14 @@ import { CommonModule } from '@angular/common';
 
 export class CursosService {
 
-  private readonly API = '/assets/qcursos.json';
+  private readonly API = '/assets/cursos.json';
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
     return this.httpClient.get<Curso[]>(this.API).pipe(
       first(),
-      delay(4000)
+      delay(0)
     );
   }
 }
