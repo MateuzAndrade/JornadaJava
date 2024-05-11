@@ -7,19 +7,15 @@ import { CommonModule } from '@angular/common';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CursosService {
 
-  private readonly API = '/assets/cursos.json';
+  private readonly API = 'http://localhost:8080/api/cursos';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Curso[]>(this.API).pipe(
-      first(),
-      delay(0)
-    );
+    return this.httpClient.get<Curso[]>(this.API).pipe(first(), delay(0));
   }
 }

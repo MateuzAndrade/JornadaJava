@@ -1,3 +1,4 @@
+import { routes } from './../../app.routes';
 import { CursosService } from './../services/cursos.service';
 import { Component } from '@angular/core';
 import { Curso } from '../model/curso';
@@ -12,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErroDialogComponent } from '../../shared/components/erro-dialog/erro-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -23,16 +25,18 @@ import { MatIconModule } from '@angular/material/icon';
     MatProgressSpinnerModule,
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.scss',
 })
 export class CursosComponent {
   cursos$: Observable<Curso[]>;
-  displayedColumns = ['nome', 'categoria','actions'];
+  displayedColumns = ['nome', 'categoria', 'actions'];
 
-  constructor(private cursosService: CursosService, public dialog: MatDialog) {
+  constructor(private cursosService: CursosService,
+     public dialog: MatDialog,
+      private router: Router) {
     this.cursos$ = this.cursosService.list().pipe(
       catchError((error) => {
         this.openError('Erro ao Carregar Cursos!');
@@ -45,5 +49,9 @@ export class CursosComponent {
     this.dialog.open(ErroDialogComponent, {
       data: erroMsg,
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['cursos/novo']);
   }
 }
