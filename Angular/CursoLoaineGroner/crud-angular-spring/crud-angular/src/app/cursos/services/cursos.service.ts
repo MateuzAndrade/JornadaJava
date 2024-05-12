@@ -11,11 +11,15 @@ import { CommonModule } from '@angular/common';
 })
 export class CursosService {
 
-  private readonly API = 'http://localhost:8080/api/cursos';
+  private readonly API = '/api/cursos';
 
   constructor(private httpClient: HttpClient) {}
 
   list() {
     return this.httpClient.get<Curso[]>(this.API).pipe(first(), delay(0));
+  }
+
+  save(record: Curso){
+    return this.httpClient.post<Curso>(this.API,record);
   }
 }
