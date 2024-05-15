@@ -46,13 +46,23 @@ export class CursoFormComponent {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(
-      (result) => console.log(result),
-      (error) => this.snackBar.open('ERRO ao Salvar o Curso','',{duration:3000})
-    );
+    this.service.save(this.form.value).subscribe({
+      next: () => this.onSuccess(),
+      error: () =>
+        this.onError()
+
+    });
   }
 
   onCancel() {
-    console.log('onCancel');
+    this.service.delete;
+  }
+
+  private onSuccess() {
+    return this.snackBar.open('Curso Cadastrado com Sucesso', '', { duration: 3000 });
+  }
+
+  private onError() {
+    return this.snackBar.open('ERRO ao Salvar o Curso', '', { duration: 3000 });
   }
 }

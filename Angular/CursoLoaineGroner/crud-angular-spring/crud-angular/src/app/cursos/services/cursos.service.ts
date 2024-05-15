@@ -22,4 +22,8 @@ export class CursosService {
   save(record: Curso){
     return this.httpClient.post<Curso>(this.API,record);
   }
+
+  delete(record: Curso){
+    return this.httpClient.post<Curso>(this.API,record);
+  }
 }
