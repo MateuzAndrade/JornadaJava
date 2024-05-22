@@ -1,10 +1,5 @@
 package com.pegmatita.LocadoraDeCarros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "estado")
 public enum Estato {
     AC,
     AL,
