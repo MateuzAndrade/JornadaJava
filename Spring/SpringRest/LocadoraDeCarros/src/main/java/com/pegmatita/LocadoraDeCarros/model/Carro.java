@@ -2,10 +2,15 @@ package com.pegmatita.LocadoraDeCarros.model;
 
 import java.time.Year;
 import java.util.Date;
+
+import javax.annotation.processing.Generated;
+
 import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -15,17 +20,16 @@ import lombok.Data;
 public class Carro {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
 	private String marca;
 	
 	private String modelo;
 	
-	@DateTimeFormat(pattern = "yyyy")
-	private Year anoFabricacao;
+	private Integer anoFabricacao;
 	
-	@DateTimeFormat(pattern = "yyyy")
-	private Year anoModelo;
+	private Integer anoModelo;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataCadastro;
