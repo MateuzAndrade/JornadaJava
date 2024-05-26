@@ -1,1 +1,0 @@
-INSERT INTO carro (marca, modelo, ano_fabricacao, ano_modelo, data_cadastro) VALUES ('Toyota', 'Corolla', 2021, 2022, '2023-05-23'),('Honda', 'Civic', 2020, 2021, '2022-04-15'),('Ford', 'Focus', 2019, 2020, '2021-02-10');
