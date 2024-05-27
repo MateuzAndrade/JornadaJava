@@ -15,6 +15,7 @@ public class GestaoObrasBean {
 		Numero++;
 	}
 	
+	@
 	public Integer getNumero() {
 		return Numero;
 	}
