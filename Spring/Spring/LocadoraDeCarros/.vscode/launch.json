@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LocadoraDeCarrosApplication<LocadoraDeCarros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "pegmatita.com.LocadoraDeCarros.LocadoraDeCarrosApplication",
+            "projectName": "LocadoraDeCarros",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

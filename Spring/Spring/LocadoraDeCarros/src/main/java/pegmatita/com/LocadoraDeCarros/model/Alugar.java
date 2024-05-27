@@ -7,26 +7,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
-@Table(name = "carro")
-public class Carro {
+@Data
+@Table(name = "aluguel")
+public class Alugar {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+		
+	private Cliente cliente;
 	
-	private String marca;
+	private Date dataEntrega;
 	
-	private String modelo;
-	
-	private Date anoFabricacao;
-	
-	private Date anoModelo;	
+	private Date dataDevolucao;
+
+	private double valorDiaria;
 	
 
 }

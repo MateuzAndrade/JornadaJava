@@ -1,32 +1,26 @@
 package pegmatita.com.LocadoraDeCarros.model;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
-@Table(name = "carro")
-public class Carro {
-	
+@Data
+@Table(name = "endereco")
+public class Endereco {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String marca;
+	private String rua;
 	
-	private String modelo;
+	private String bairro;
 	
-	private Date anoFabricacao;
+	private String cidade;
 	
-	private Date anoModelo;	
-	
-
+	private String estado;
 }
