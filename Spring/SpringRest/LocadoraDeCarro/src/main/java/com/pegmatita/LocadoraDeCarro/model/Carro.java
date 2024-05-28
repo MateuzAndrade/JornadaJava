@@ -2,6 +2,7 @@ package com.pegmatita.LocadoraDeCarro.model;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,12 +19,16 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String marca;
 
+    @Column(nullable = false)
     private String modelo;
 
+    @Column(nullable = false)
     private Date anoModelo;
 
+    @Column(nullable = false)
     private Date anoFabricacao;
 
 }

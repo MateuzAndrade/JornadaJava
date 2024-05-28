@@ -2,6 +2,7 @@ package com.pegmatita.LocadoraDeCarro.model;
 
 import org.hibernate.mapping.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,16 +19,22 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String rua;
 
+    @Column(nullable = false)
     private Integer numero;
 
+    @Column(nullable = false)
     private String bairro;
 
+    @Column(nullable = false)
     private String cidade;
 
+    @Column(nullable = false)
     private String estado;
 
+    @Column(nullable = false)
     private String pais;
 
 }
