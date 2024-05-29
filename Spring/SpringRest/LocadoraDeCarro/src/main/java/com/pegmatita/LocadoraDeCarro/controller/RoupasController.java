@@ -1,27 +1,27 @@
 package com.pegmatita.LocadoraDeCarro.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
-import com.pegmatita.LocadoraDeCarro.model.mysql.Cliente;
-import com.pegmatita.LocadoraDeCarro.repository.mysql.ClienteRepository;
+import com.pegmatita.LocadoraDeCarro.model.mariadb.Camisa;
+import com.pegmatita.LocadoraDeCarro.service.CamisaService;
 
 @Controller
 @ResponseBody
-@RequestMapping("/clientes")
-public class ClienteController {
+@RequestMapping("/roupas")
+public class RoupasController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private CamisaService camisaService;
 
     @GetMapping
-    public List<Cliente> listar(){
-        return clienteRepository.findAll();
+    public  List<Camisa> listar(){
+        return camisaService.listar();
     }
-
+    
 }

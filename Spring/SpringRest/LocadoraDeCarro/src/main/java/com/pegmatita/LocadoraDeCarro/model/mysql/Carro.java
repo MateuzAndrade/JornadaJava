@@ -1,4 +1,4 @@
-package com.pegmatita.LocadoraDeCarro.model;
+package com.pegmatita.LocadoraDeCarro.model.mysql;
 
 import java.sql.Date;
 
@@ -7,31 +7,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "carro")
+public class Carro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String marca;
 
     @Column(nullable = false)
-    private String cpf;
+    private String modelo;
 
-    @ManyToOne
-    private Endereco Endereco;
+    //@Column(nullable = false)
+    private Date anoModelo;
 
-    private Date dataNascimento;
-
-    private Date dataCadastro;
+    //@Column(nullable = false)
+    private Date anoFabricacao;
 
 }
