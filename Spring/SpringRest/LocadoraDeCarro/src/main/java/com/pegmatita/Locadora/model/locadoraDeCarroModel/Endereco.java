@@ -1,4 +1,4 @@
-package com.pegmatita.LocadoraDeCarro.model.mysql;
+package com.pegmatita.Locadora.model.locadoraDeCarroModel;
 
 
 import jakarta.persistence.Column;

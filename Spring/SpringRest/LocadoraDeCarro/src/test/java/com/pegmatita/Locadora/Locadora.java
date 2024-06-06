@@ -1,10 +1,10 @@
-package com.pegmatita.LocadoraDeCarro;
+package com.pegmatita.Locadora;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LocadoraDeCarroApplicationTests {
+class Locadora {
 
 	@Test
 	void contextLoads() {

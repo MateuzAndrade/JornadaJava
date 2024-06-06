@@ -1,13 +1,13 @@
-package com.pegmatita.LocadoraDeCarro;
+package com.pegmatita.Locadora;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LocadoraDeCarroApplication {
+public class LocadoraApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LocadoraDeCarroApplication.class, args);
+		SpringApplication.run(LocadoraApplication.class, args);
 	}
 
 }
