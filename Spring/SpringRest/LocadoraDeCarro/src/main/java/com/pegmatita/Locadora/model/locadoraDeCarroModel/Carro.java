@@ -25,10 +25,10 @@ public class Carro {
     @Column(nullable = false)
     private String modelo;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private Date anoModelo;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private Date anoFabricacao;
 
 }

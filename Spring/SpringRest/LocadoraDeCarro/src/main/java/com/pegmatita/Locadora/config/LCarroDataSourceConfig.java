@@ -9,14 +9,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.pegmatita.Locadora.repository.locadoradeCarroRepository",
-                        entityManagerFactoryRef = "lCarroEntityManager")
+                        entityManagerFactoryRef = "lCarroEntityManager",
+                        transactionManagerRef = "lCarroTransactionManager")
 public class LCarroDataSourceConfig {
 
-    @Bean
+    @Bean(name="lCarrodataSource")
     @Primary
     public DataSource lCarrodataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -27,14 +30,20 @@ public class LCarroDataSourceConfig {
         return dataSource;
     }
 
-    @Bean
+    @Bean (name="lCarroEntityManager")
     @Primary
     public LocalContainerEntityManagerFactoryBean lCarroEntityManager(EntityManagerFactoryBuilder builder,
             @Qualifier("lCarrodataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
                 .packages("com.pegmatita.Locadora.model.locadoraDeCarroModel")
+                .persistenceUnit("lCarro")
                 .build();
+    }
+
+    @Bean(name="lCarroTransactionManager")
+    public PlatformTransactionManager lCarroTransactionManager(@Qualifier("lCarroEntityManager") LocalContainerEntityManagerFactoryBean lCarroEntityManager){
+        return new JpaTransactionManager(lCarroEntityManager.getObject());
     }
 
 }
