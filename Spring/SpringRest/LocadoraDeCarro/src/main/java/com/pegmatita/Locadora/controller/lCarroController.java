@@ -46,9 +46,9 @@ public class lCarroController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/por-nome")
+    @GetMapping("/por-marca")
     public List<Carro> buscaCarroMarca(String marca ) {
-        return carroRepository.findByMarca(marca);
+        return carroRepository.findByMarcaContaining(marca);
     }
     
 

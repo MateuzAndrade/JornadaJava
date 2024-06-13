@@ -11,6 +11,7 @@ import com.pegmatita.Locadora.model.locadoraDeCarroModel.Carro;
 @Repository
 public interface CarroRepository extends JpaRepository<Carro,Long>{
 
-    List<Carro> findByMarca(String marca);
+    List<Carro> findByMarcaContaining(String marca);
+
 
 }
